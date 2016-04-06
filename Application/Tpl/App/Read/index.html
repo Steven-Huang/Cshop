@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>燕之居书吧</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+
+	<style type="text/css">
+		.app{width: 100%;height: 100%;}
+		.form{width: 96%;margin-bottom: 110px;margin-left: 2%;}
+		.donate{width: 100%;margin-top: 20px;height: 180px;background-color: #fff;border-radius: 5px;}
+		.font0{position:absolute;left:50%;margin:30px 0 0 -40px;width:80px;height:80px;border-radius: 50%;background-color: #bd4545;}
+		.font0 span{height: 80px;line-height: 80px;margin-left: 25px;text-align: center;font-size: 30px;color: #fff;}
+		.font0 p{width: 250%;margin-left: -75%;height: 20px;line-height: 20px;margin-top: 25px;text-align: center;font-size: 15px;color: #000;}
+		.font{position:absolute;left:50%;margin:30px 0 0 -40px;width:80px;height:80px;border-radius: 50%;background-color: #d7c443;}
+		.font span{height: 80px;line-height: 80px;margin-left: 25px;text-align: center;font-size: 30px;color: #fff;}
+		.font p{width: 250%;margin-left: -75%;height: 20px;line-height: 20px;margin-top: 25px;text-align: center;font-size: 15px;color: #000;}
+		.font2{position:absolute;left:50%;margin:30px 0 0 -40px;width:80px;height:80px;border-radius: 50%;background-color: #439ad7;}
+		.font2 span{height: 80px;line-height: 80px;margin-left: 25px;text-align: center;font-size: 30px;color: #fff;}
+		.font2 p{width: 250%;margin-left: -75%;height: 20px;line-height: 20px;margin-top: 25px;text-align: center;font-size: 15px;color: #000;}
+		.help{position: absolute;margin-top: -50px;color: #f2f2f2;font-size: 15px;width: 94%;height: 35px;line-height: 35px;left: 3%;text-align: center;background-color: #c5c9cb;border-radius: 2px;}
+		/*搜索*/
+		.search-text{position: absolute;top: 10px; color: #0090d6;font-size: 15px;width: 75%;height: 35px;line-height: 35px;left:3%;text-align: center;background-color: #fff;border-radius: 2px;border: solid 0px #0090d6;}
+
+		.search-button{position: absolute;top: 10px; width: 18%;height: 37px;line-height: 37px;background-color: #0090d6;border: solid 0px #0090d6;right:3%;color:#fff;text-align: center;font-size: 20px;border-radius: 2px;}
+		
+	</style>
+</head>
+<body style="background-color: #e6e6e6;">
+
+	<div class="app">
+		<div class="form">
+			<form action="{:U('App/Read/search')}" method="POST">
+		 		<input type="text" class="search-text" name="q"/>
+		 		<input type="text" style="display: none" name="openid"/>
+		 		<button type="submit" class="search-button">搜书</button>
+		 	</form>
+	 	</div>
+	 	<a href="{:U('App/Read/donateShow',array('openid'=>$openid))}">
+			<div class="help">
+				<span style="color:#bd4545; ">点此给读书基金赞赏&nbsp;➤</span>
+			</div>
+		</a>
+
+		<a href="{:U('App/Read/scanCodeReturn', array('openid'=>$openid))}">
+			<div class="donate">
+				<div class="font0">
+					<span>还</span>
+					<p>扫描图书条形码还书</p>
+				</div>
+			</div>
+		</a>
+		<a href="{:U('App/Read/scanCodeRead', array('openid'=>$openid))}">
+			<div class="donate">
+				<div class="font2">
+					<span>借</span>
+					<p>扫描图书条形码自助借阅</p>
+				</div>
+			</div>
+		</a>
+		<a href="{:U('App/Read/scanCode', array('openid'=>$openid))}">
+			<div class="donate">
+				<div class="font">
+					<span>捐</span>
+					<p>扫描图书条形码给我们捐书</p>
+				</div>
+			</div>
+		</a>
+				
+	</div>
+	
+</body>
+</html>

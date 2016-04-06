@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="hb-loaded" style="height:100%;">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="常熟票务">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css" href="../Public/Static/css/reset.min.css">
+<link rel="stylesheet" href="../Public/Static/css/reset.css">
+<!-- <link rel="stylesheet" href="../Public/Static/css/supersized.css"> -->
+<link rel="stylesheet" href="../Public/Static/css/style.css">
+<!-- 导航栏样式 -->
+<link rel="stylesheet" type="text/css" href="../Public/Static/css/menu.css" media="all">
+<script type="text/javascript" src="../Public/Static/js/jquery.min.js"></script>
+<!-- 短信验证码 -->
+<script type="text/javascript">
+                /*-------------------------------------------*/
+                var InterValObj; //timer变量，控制时间
+                var count = 30; //间隔函数，1秒执行
+                var curCount;//当前剩余秒数
+                var code = ""; //验证码
+                var codeLength = 6;//验证码长度
+                function sendMessage() {
+                            curCount = count;
+                            var dealType; //验证方式
+                var uid=$("#uid").val();//用户uid
+                if ($("#phone").attr("checked") == true) {
+                                dealType = "phone";
+                            }
+                            else {
+                                dealType = "email";
+                            }
+                            //产生验证码
+                for (var i = 0; i < codeLength; i++) {
+                                code += parseInt(Math.random() * 9).toString();
+                            }
+                            // 测试验证码
+                            // alert(code);
+                            //设置button效果，开始计时
+                                $("#btnSendCode").attr("disabled", "true");
+                                $("#btnSendCode").val(curCount + "秒后重新获取");
+                                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                //向后台发送处理数据
+                $.ajax({
+                    type: "POST", //用POST方式传输
+                    dataType: "text", //数据格式:JSON
+                    url: '__APP__'+'/App/Public/smsbao', //目标地址
+                    data : {
+                        uid : uid,
+                        code: code
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("发送失败，请联系网站管理员");
+                    },
+                    success: function (response , status , xhr){ 
+                         // alert(response);
+                    }
+                });
+                }
+                //timer处理函数
+                function SetRemainTime() {
+                    if (curCount == 0) {                
+                        window.clearInterval(InterValObj);//停止计时器
+                        $("#btnSendCode").removeAttr("disabled");//启用按钮
+                        $("#btnSendCode").val("重新获取验证码");
+                        code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效    
+                    }
+                    else {
+                        curCount--;
+                        $("#btnSendCode").val(curCount + "秒后重新获取");
+                    }
+                }
+</script>
+
+<title>常熟农商行票务</title>
+</head>
+
+<body style="background:#dde925;">
+
+    <div class="page-container" style="margin-top:40px">
+        <h1 style="color:#0090d6"><b>忘记密码</b></h1>
+        <form action="{:U('App/User/doforget')}" method="POST" >
+            <input type="text" name="phone" class="username" id='uid' placeholder="请输入手机号">
+             <div>
+                <input name="phonecode" type="text" placeholder="短信验证码" class="username" style="width:40%">
+                <input style="width:45%; background:#0090d6" id="btnSendCode" type="button" value="点击获取验证码" onclick="sendMessage()" />
+            </div>
+            <input type="password" name="password" class="password" placeholder="请设置密码">
+            <button type="submit">确认修改</button>
+        </form>
+    </div>
+
+<!-- Javascript -->
+    <script src="../Public/Static/js/jquery-1.8.2.min.js"></script>
+    <!-- // <script src="../Public/Static/js/supersized.3.2.7.min.js"></script> -->
+    <!-- // <script src="../Public/Static/js/supersized-init.js"></script> -->
+    <script src="../Public/Static/js/scripts.js"></script>
+
+</body>
+</html>

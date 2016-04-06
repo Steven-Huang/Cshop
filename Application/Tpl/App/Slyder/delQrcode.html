@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>燕之居</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <link rel="stylesheet" href="./Public/css/userStyle.css">
+    <link rel="stylesheet" href="./Public/fonts/iconfont.css">
+    <link rel="stylesheet" href="./Public/css/app.css">
+    <link href="./Public/css/common.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./Public/js/jquery-1.9.1.js" ></script>
+    <script type="text/javascript" src="./Public/js/date.js" ></script>
+    <script type="text/javascript" src="./Public/js/iscroll.js" ></script>
+
+</head>
+
+<body style="cursor: default;">
+
+<!-- App Start -->
+<div id="app">
+    <div class="snap-content" style="padding-bottom: 50px; height: auto;">
+        <div class="cart-wrap" style="padding-bottom: 60px; background: #f5f5f5 ">
+            <div class="scrollable-content">
+                <div class="list-group">
+                    <div style="min-height: 568px;">
+                        
+                        <!-- 订单编号 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>订单：</td>
+                                            <td>
+                                                <label>{$order['orderId']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 联系电话 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>电话：</td>
+                                            <td>
+                                                <label>{$order['userPhone']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 支付方式 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>支付：</td>
+                                            <td>
+                                                <label>{$order['payStyle']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 预定时间 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>预定：</td>
+                                            <td>
+                                                <label>{$order['selectTime']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 支付状态 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>状态：</td>
+                                            <td>
+                                                <label>{$order['sendStatus']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 奖品 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>奖品:</td>
+                                            <td>
+                                                <label>{$slyder['prize']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 状态 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>核销:</td>
+                                            <td>
+                                            	<if condition="$slyder.flag eq 0">
+	                                                <label>未核销</label>
+	                                            <else />
+	                                                <label>已核销</label>
+	                                            </if>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 页面底部导航 -->
+        <div class="user-account-footer">
+            <a href="{:U('App/Index/home',array('openid'=>$order['openid']))}">
+                回到首页
+                <span class="help"></span>
+            </a>
+            <a href="{:U('App/Slyder/delCode',array('orderId'=>$order['orderId']))}" >
+                确认核销
+                <span class="about"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+   
+<!-- App End -->
+
+ 
+</body>
+</html>

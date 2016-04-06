@@ -1,0 +1,66 @@
+<!doctype html>
+<html class="no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
+	<title>燕之居</title>
+	<link rel="stylesheet" type="text/css" href="http://nsh2.565tech.com/xunyanjinfu/Public/css/style.css">
+	<link rel="stylesheet" href="http://nsh2.565tech.com/xunyanjinfu/Public/css/amazeui.min.css">
+	<link rel="stylesheet" href="http://nsh2.565tech.com/xunyanjinfu/Public/css/app.css">
+
+	<style> 
+	@font-face
+	{
+	font-family: choggle;
+	src: url('http://nsh2.565tech.com/xunyanjinfu/Public/fonts/fontawesome-webfont.ttf')
+	    ,url('http://nsh2.565tech.com/xunyanjinfu/Public/fonts/fontawesome-webfont.eot')
+	    ,url('http://nsh2.565tech.com/xunyanjinfu/Public/fonts/fontawesome-webfont.woff');
+	}
+	</style>
+
+</head>
+<body>
+
+    <!-- 头部导航栏 -->
+    <div id="app-header" class="app-header box-sizing fixed-wrap" style="width:100%; height:25px; position: fixed;z-index: 999;">
+        <div class="header-menu" style="background-color: #f2f2f2;width: 100%;height: 50px;">
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td class="active-btn">
+                            <a href="{:U('App/Index/home',array('openid'=>$openid))}">
+                                <img src="./Public/icon/rebackHome.png" class="current" style="width:30px; margin-left: 20px;margin-top: 10px;">
+                            </a>
+                        </td>
+                        <td>
+                        	<div style="margin-top: 10px;">
+                        		<span style="color: #0090d6;font-size: 20px; margin-left: 30px;">我的兑换券</span>
+                        	</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+	<div class="content">
+	<volist name="qrcodes" id="vo">
+		<if condition = "$vo.prize eq '谢谢参与'">
+		<else />
+			<div style="border: solid 1px #0090d6; margin-top: 10x;">
+			<img src="/yanzhiju/Public/QRcode/{$vo['qrcode']}">
+			<p style="text-align: center; color: red; margin-top: -5px;">奖项：{$vo['prize']}&nbsp;&nbsp;
+				<if condition = "$vo.flag neq '0'">已兑换
+				<else />未兑换</if></p>
+			</div>
+		</if>
+	</volist>
+	</div>
+	
+<script src="http://nsh2.565tech.com/xunyanjinfu/Public/js/jquery.min.js"></script>
+<script src="http://nsh2.565tech.com/xunyanjinfu/Public/js/amazeui.min.js"></script>
+</body>
+</html>

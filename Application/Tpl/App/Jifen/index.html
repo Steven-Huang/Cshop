@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>积分兑换</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <link rel="stylesheet" href="./Public/css/userStyle.css">
+    <link rel="stylesheet" href="./Public/fonts/iconfont.css">
+
+<style type="text/css">
+    .selectGoodNum{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width:80%; 
+        margin-left: 10%; 
+        background-color: #0090D6;
+        border-radius: 50%; 
+        text-align: center; 
+        color: #fff;
+    }
+</style>
+ 
+</head>
+<body style="cursor: default;">
+<!-- App Start -->
+<div id="app">
+    <div id="app_content" class="snap-content">
+
+        <!-- 头部导航栏 -->
+        <div id="app-header" class="app-header box-sizing fixed-wrap" style="position: fixed;">
+            <div class="app-header-inner">
+                <div id="app-header-main" class="app-header-main">
+                    <div class="header-menu" style="background-color: #fff;">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td class="active-btn">
+                                        <a href="{:U('App/Index/home')}">
+                                            <img src="./Public/icon/rebackHome.png" class="current" style="width:30px; margin-left: 20px;">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <ul id="header-menue-ui">
+                                            <li style="width: 100%; font-size: 22px;">
+                                                <a id="menu-fruits" href="#" >
+                                                <span>燕之居积分兑换</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="active-btn">
+                                        <a href="{:U('App/User/index')}">
+                                            <img src="./Public/icon/account.png" style="width:30px; margin-right: 20px;">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="transform-wrap" style="width:100%; margin-top: 3px; padding-top: 58px;">
+            <div>
+                <ul class="product-box">
+                <volist name="goods" id="good">
+                    <li>
+                        <!-- <div class="product-item-box"> -->
+                        <div class="product-item-inner" style="border-bottom: solid 1px #66b9e1;">
+                            <div class="product-item-header">
+                                <div class="lazy-wrap font-zero">
+                                    <img class="lazy" src="{$good['imgUrl']}" width="100%" heigh="auto" style="height: 137px;">
+                                    <!-- <a href="#" title="尽享礼盒"></a> -->
+                                </div>
+                            </div>
+                            <div class="product-item-main">
+                                <div class="product-item-content">
+                                    <h3>
+                                        <a href="#">{$good['name']}</a>
+                                        <span>
+                                            {$good['price']}积分
+                                        </span>
+                                                                              
+                                    </h3>
+                                    <p id="product-itme-price-box-5212" class="product-itme-price-box">
+                                        <span class="unit">{$good['unit']}</span>
+                                    </p>
+                                </div>
+
+                                <!-- 购买按钮 -->
+                                <a href="{:U('App/Jifen/order',array('id'=>$good['goodId']))}">
+                                    <div class="product-opera-wrap" style="margin-bottom: -8px;">
+                                        <div class="product-opera-inner" >
+                                            <if condition="$good['number'] eq '0'">
+                                                <!-- <span style="background-color: #a51212;padding-left:5px;padding-right: 5px;padding-top: 5px; padding-bottom: 5px; height: 30px; line-height: 12px;font-size: 12px;text-align: center;color: #fff;border-radius: 5px;">周一六点开抢</span> -->
+                                                <span style="background-color: #b5b1b1;" class="btn">等</span>
+                                            <else />
+                                                <span class="btn" >换</span>
+                                            </if>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </volist>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- App End -->
+
+</body>
+</html>

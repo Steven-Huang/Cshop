@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>燕之居</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <link rel="stylesheet" href="./Public/css/userStyle.css">
+    <link rel="stylesheet" href="./Public/fonts/iconfont.css">
+    <link rel="stylesheet" href="./Public/css/app.css">
+    <link href="./Public/css/common.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./Public/js/jquery-1.9.1.js" ></script>
+    <script type="text/javascript" src="./Public/js/date.js" ></script>
+    <script type="text/javascript" src="./Public/js/iscroll.js" ></script>
+
+</head>
+
+<body style="cursor: default;">
+
+<!-- App Start -->
+<div id="app">
+    <div class="snap-content" style="padding-bottom: 50px; height: auto;">
+        <div class="cart-wrap" style="padding-bottom: 60px; background: #f5f5f5 ">
+            <div class="scrollable-content">
+                <div class="list-group">
+                    <div style="min-height: 568px;">
+                        <div class="cart-settlement-wrap">
+                            <div class="cart-settlement-inner">
+                                <!-- 头部信息 -->
+                                <h1 class="user-shopping-cart">
+                                    订单详情
+                                </h1>
+
+                                <!-- 已选择的商品 -->
+                                <ul class="shopping-box">
+                                    <volist name="goods" id="good"><li>
+                                        <div class="shopping-item-box">
+                                            <div class="img-box loading-box fl" style="min-height:50px;width: 50px;">
+                                                <img src="{$good['imgUrl']}" style="width: 50px;height: 50px;min-height: 50px;">
+                                            </div>
+                                            <div class="shopping-operate">
+                                                <p class="shopping-title">{$good['name']}</p>
+                                                <p class="price">¥{$good['price']}
+                                                <span class="goods_company">/{$good['unit']}</span>
+                                                </p>
+                                            </div>
+                                            <div class="editCarShop">
+                                                <div style="margin-top:28.5px;">
+                                                    <div class="subtotal_num_box">
+                                                        <span class="subtotal_num">
+                                                            {$good['selectNumber']}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li></volist>
+                                </ul>
+                              
+                                <!-- 费用统计 -->
+                                <div class="shopping-info" id="shopping-info">
+                                    <table class="pay-info-wrap" border="0" cellspacing="0" cellpadding="0">
+                                        <tbody>
+                                            <tr>
+                                                <td style="width:130px;">
+                                                    总计共
+                                                    <span id="all_num">{$selectedGoodNumber}</span>
+                                                    份商品
+                                                </td>
+                                                <td>
+                                                    <table class="pay-info fr" border="0" cellspacing="0" cellpadding="0">
+                                                        <tbody>
+                                                            <!-- <tr>
+                                                                <td>运费：</td>
+                                                                <td>
+                                                                    <span></span>
+                                                                    <span id="deliveryFeePrice">0&nbsp;积分</span>
+                                                                </td>
+                                                            </tr> -->
+                                                            <!-- <tr id="timing-fee">
+                                                                <td>服务费：</td>
+                                                                <td>
+                                                                    <span>¥</span>
+                                                                    <span id="timingFee">0.00元</span>
+                                                                </td>
+                                                            </tr> -->
+                                                            <tr>
+                                                                <td>总价：</td>
+                                                                <td>
+                                                                    <span>¥</span>
+                                                                    <span id="totalPrice">
+                                                                        {$totalPrice}元
+                                                                    </span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 订单编号 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>订单：</td>
+                                            <td>
+                                                <label>{$order['orderId']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 联系电话 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>电话：</td>
+                                            <td>
+                                                <label>{$order['userPhone']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 配送方式 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>配送：</td>
+                                            <td>
+                                                <label>{$order['distributionStyle']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 支付方式 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>支付：</td>
+                                            <td>
+                                                <label>{$order['payStyle']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 注意事项 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>时间：</td>
+                                            <td>
+                                                <label>糕点:12:00~18:00，净菜:17:00~18:00</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 注意事项 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>自提：</td>
+                                            <td>
+                                                <label>线上预定糕点、净菜在燕之居取货</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 配送地址 -->
+                        <!-- <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>地址：</td>
+                                            <td>
+                                                <label>{$order['Address']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> -->
+                        <!-- 备注信息 -->
+                        <!-- <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>备注：</td>
+                                            <td>
+                                                <label>{$order['remark']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> -->
+                        <!-- 预定时间 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>预定：</td>
+                                            <td>
+                                                <label>{$order['selectTime']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- 支付状态 -->
+                        <div class="goods-time" id="ziti_tel_wrap">
+                            <div class="element-inner" id="ziti_tel_wrap_inner">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>状态：</td>
+                                            <td>
+                                                <label>{$order['sendStatus']}</label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 页面底部导航 -->
+        <div class="user-account-footer">
+            <a href="{:U('App/Index/home',array('openid'=>$order['openid']))}">
+                回到首页
+                <span class="help"></span>
+            </a>
+            <a href="{:U('App/User/order',array('openid'=>$order['openid']))}" >
+                订单中心
+                <span class="about"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+   
+<!-- App End -->
+
+ 
+</body>
+</html>

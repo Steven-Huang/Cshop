@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="hb-loaded"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="常熟票务">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css" href="../Public/Static/css/reset.min.css">
+<!-- 导航栏样式 -->
+<link rel="stylesheet" type="text/css" href="../Public/Static/css/menu.css" media="all">
+<script type="text/javascript" src="../Public/Static/js/jquery.min.js"></script>
+<!-- 短信验证码 -->
+<script type="text/javascript">
+                /*-------------------------------------------*/
+                var InterValObj; //timer变量，控制时间
+                var count = 30; //间隔函数，1秒执行
+                var curCount;//当前剩余秒数
+                var code = ""; //验证码
+                var codeLength = 6;//验证码长度
+                function sendMessage() {
+                            curCount = count;
+                            var dealType; //验证方式
+                var uid=$("#uid").val();//用户uid
+                if ($("#phone").attr("checked") == true) {
+                                dealType = "phone";
+                            }
+                            else {
+                                dealType = "email";
+                            }
+                            //产生验证码
+                for (var i = 0; i < codeLength; i++) {
+                                code += parseInt(Math.random() * 9).toString();
+                            }
+                            // 测试验证码
+                            // alert(code);
+                            //设置button效果，开始计时
+                                $("#btnSendCode").attr("disabled", "true");
+                                $("#btnSendCode").val(curCount + "秒后重新获取");
+                                InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                //向后台发送处理数据
+                $.ajax({
+                    type: "POST", //用POST方式传输
+                    dataType: "text", //数据格式:JSON
+                    url: appurl+'/App/Smsbao/index', //目标地址
+                    data: "dealType=" + dealType +"&uid=" + uid + "&code=" + code,
+                    error: function (XMLHttpRequest, textStatus, errorThrown) { },
+                    success: function (msg){ }
+                });
+                }
+                //timer处理函数
+                function SetRemainTime() {
+                    if (curCount == 0) {                
+                        window.clearInterval(InterValObj);//停止计时器
+                        $("#btnSendCode").removeAttr("disabled");//启用按钮
+                        $("#btnSendCode").val("重新获取验证码");
+                        code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效    
+                    }
+                    else {
+                        curCount--;
+                        $("#btnSendCode").val(curCount + "秒后重新获取");
+                    }
+                }
+    </script>
+
+<title>常熟农商行票务</title>
+
+</head>
+<body>
+
+<div class="head">
+        <div class="head-l">
+            <ul>
+                <li id="app_back" style="">
+                    <a href="{:U('App/Index/index',array('uid'=>$uid))}" class="back-btn">返回</a>
+                </li>
+            </ul>
+        </div>
+        <h1 class="head-m">会员绑定</h1>
+    </div>
+
+    <div class="login-con">
+        <form action="{:U('App/User/dobind',array('uid'=>$uid))}" method="POST" >
+        <div class="login-con-user">
+            <div class="usr-box">
+                <input name="username" type="text" class="msg-ipt" placeholder="请输入用户名" tabindex="1">
+            </div>
+            <div class="usr-box">
+                <input name="phone" type="text" class="msg-ipt" placeholder="请输入手机号码" tabindex="1">
+            </div>
+            <div class="usr-box">
+                <input name="phonecode" type="text" placeholder="短信验证码" class="msg-ipt mr10">
+                <input class="login-btn" id="btnSendCode" type="button" value="点击获取验证码" onclick="sendMessage()" />
+            </div>
+            <div class="usr-box pos-rela">
+                <input name="password" type="password" placeholder="请设置登录密码" class="con-ipt pl0" style="margin-bottom:0;">
+            </div>
+            <div class="usr-box">
+                <p class="yzm-numb">密码由6-18位数字、字母、下划线组成。</p>
+            </div>
+            <button class="login-btn2" type="submit" id="regbtn">确认绑定</button>
+        </div>
+        </form>
+    </div>
+
+<include file="Public:footer"/>

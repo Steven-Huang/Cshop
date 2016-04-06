@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>燕之居</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <link rel="stylesheet" href="./Public/css/userStyle.css">
+ 
+</head>
+<body >
+    <div class="user-account-header" style="height: 160px;">
+        <p>
+            <span id="user-avater-box">
+            <img id="user-avater" src="{$user['headImg']}" width="80" height="80" ></span>
+        </p>
+        <h3 style="margin-top: 10px;">【{$user['name']}】, 欢迎您！</h3>
+        <div style="width: 100%; margin-top:20px; background-color: #fff; color: #0090d6;opacity:0.5; font-size: 15px;height: 25px; line-height: 25px; text-align: color;">
+            <span>积分：{$user['integral']}分&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            <span>余额：{$user['balance']}元&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+            <span>等级：{$user['levelFlag']}L</span>
+        </div>   
+    </div>
+    <!-- 个人中心菜单列表 -->
+    <div class="user-account-main">
+        <ul>
+        <volist name="integrals" id="integral">
+            <li class="li-order">
+                <a>
+                    {$integral['integralTime']}&nbsp;&nbsp;&nbsp;更新:&nbsp;{$integral['integral']}
+                    <span class="order"></span>
+                </a>
+            </li>
+        </volist>
+        </ul>
+    </div>
+
+    <div class="user-account-footer">
+        <a href="{:U('App/Index/home')}">
+            回到首页
+            <span class="help"></span>
+        </a>
+        <a href="{:U('App/User/index')}" >
+            返回上级
+            <span class="about"></span>
+        </a>
+    </div>
+ 
+
+
+    <!-- App End -->
+
+</body>
+</html>

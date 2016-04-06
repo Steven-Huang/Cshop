@@ -1,0 +1,58 @@
+<include file="Public:header"/>
+<div class="col-sm-12 widget-container-span">
+	<div class="widget-box transparent">
+		<div class="widget-body">
+			<div class="widget-main padding-12 no-padding-left no-padding-right">
+				<div class="tab-content padding-4">
+					<div id="home1" class="tab-pane in active">
+						<div class="row">
+							<div class="col-xs-12 no-padding-right">
+								<div class="table-responsive">
+									<table id="sample-table-1"
+										class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="center"><label> <input
+														type="checkbox" class="ace"> <span class="lbl"></span>
+												</label></th>
+												<th>订单编号</th>
+												<th>联系方式|地址</th>
+												<th>订单价格</th>
+												<th>支付方式</th>
+												<th>备注说明</th>
+												<th>配送方式</th>
+												<th>预定时间</th>
+												<th>支付流水</th>
+											</tr>
+										</thead>
+										<tbody>
+										<volist name="result" id="result">
+											<tr>
+												<td class="center"><label> <input
+														type="checkbox" class="ace"> <span class="lbl"></span>
+												</label></td>
+												<td>{$result.orderId}</td>
+												<td>{$result.userPhone}|{$result.Address}</td>
+												<td>【{$result.totalPrice}】元</td>
+												<td>{$result.payStyle}</td>
+												<td>{$result.remark}</td>
+												<td>{$result.distributionStyle}</td>
+												<td>{$result.selectTime}</td>
+												<td>{$result.bankFlowNo}</td>
+												<!-- <td><a href="{:U('Admin/Order/refuard',array('orderId'=>$result['orderId']))}" class="btn btn-white btn-sm">退款</a></td> -->
+											</tr>
+										</volist>
+										</tbody>
+									</table>
+									<div class="pagination" style="margin:0px;">
+									    {$page}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

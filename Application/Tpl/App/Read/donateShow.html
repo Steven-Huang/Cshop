@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>爱心捐助</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+
+	<style type="text/css">
+		.header{
+			width:110%; 
+			margin-top: -25px;
+			margin-left: -5%;
+		}
+		.header img{
+			width: 100%;
+		}
+
+		.use{
+			width: 100%;
+			margin-top: 25px;
+		}
+		.usespan{
+			width: 200px;
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			margin: auto; 
+			position: absolute;
+			left: 0;
+			right: 0;
+			font-size: 12px;
+			color: #AAACAE; 
+		}
+
+		.first{
+			width: 100%;
+			margin-top: 10px;
+		}
+
+		.img{
+			width: 80%;
+			margin-left: 10%;
+		}
+
+
+	</style>
+</head>
+<body style="background-color: #fff; padding: 0px;border: 0px;">
+	<div class="header">
+		<img src="./Public/images/donate/header.png">
+	</div>
+	<div class="use">
+		<span class="usespan">您的捐助将用于购买新书</span>
+	</div>
+
+	<!-- 捐款额度 -->
+	<table border="0" style="margin-top: 70px;">
+	<tr>
+		<td>
+			<a href="{:U('App/Read/donateMoney',array('openid'=>$openid,'money'=>'5'))}">
+				<div class="first">
+					<img class="img" src="./Public/images/donate/5.png">
+				</div>
+			</a>
+		</td>
+		<td>
+			<a href="{:U('App/Read/donateMoney',array('openid'=>$openid,'money'=>'10'))}">
+				<div class="first">
+					<img class="img" src="./Public/images/donate/10.png">
+				</div>
+			</a>
+		</td>
+		<td>
+			<a href="{:U('App/Read/donateMoney',array('openid'=>$openid,'money'=>'20'))}">
+				<div class="first">
+					<img class="img" src="./Public/images/donate/20.png">
+				</div>
+			</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="{:U('App/Read/donateMoney',array('openid'=>$openid,'money'=>'50'))}">
+				<div class="first">
+					<img class="img" src="./Public/images/donate/50.png">
+				</div>
+			</a>
+		</td>
+		<td>
+			<a href="{:U('App/Read/donateMoney',array('openid'=>$openid,'money'=>'80'))}">
+				<div class="first">
+					<img class="img" src="./Public/images/donate/80.png">
+				</div>
+			</a>
+		</td>
+		<td>
+			<a href="{:U('App/Read/donateMoney',array('openid'=>$openid,'money'=>'100'))}">
+				<div class="first">
+					<img class="img" src="./Public/images/donate/100.png">
+				</div>
+			</a>
+		</td>
+	</tr>
+	</table>
+
+	<span class="usespan" style="bottom: 25px;color:#0090d6;">有温度的阅读</span>	
+
+</body>
+</html>

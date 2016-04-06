@@ -1,0 +1,81 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
+    <title>图书详情</title>
+  <link rel="stylesheet" href="./Public/css/app.css">
+  <link rel="stylesheet" href="./Public/css/userStyle.css">
+
+    <style type="text/css">
+        select {
+            border: solid 1px #000;
+          
+            appearance:none;
+            -moz-appearance:none;
+            -webkit-appearance:none;
+
+            padding-right: 14px;
+
+            background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat scroll right center transparent;
+
+        }
+        select::-ms-expand { display: none; }
+
+    </style>
+    
+</head>
+<body>
+
+  <!-- 商品信息 -->
+    <div class="goodDetailInfo" style="margin-top: 20px;">
+        <img src="{$book['image']}">
+    <div class="goodInfo">
+      <span class="">豆瓣评分：</span>
+      <img src="./Public/images/start/{$book['star']}.png">
+      <p>名称：{$book['title']}</p>
+      <p>作者：{$book['author']}</p>
+      <p>出版时间：{$book['pubdate']}</p>
+      <p>出版单位：{$book['publisher']}元</p>
+    </div>
+    </div>
+
+  <!-- 确认摆放位置 -->
+<div class="form">
+    <form action="{:U('App/Read/submitPosition')}" method="POST">
+        <select name="position1" style="margin-top: 220px; width: 45%; padding:0px; margin-left: 3%;float: left;background-color: #fff;color: #0090d6;font-size: 15px;height: 30px;line-height: 30px;text-align: center;border: solid 1px #0090d6;">
+            <option value="A柜">A柜</option>
+            <option value="B柜">B柜</option>
+            <option value="C柜">C柜</option>
+            <option value="D柜">D柜</option>
+            <option value="E柜">E柜</option>
+            <option value="F柜">F柜</option>
+            <option value="G柜">G柜</option>
+            <option value="H柜">H柜</option>
+        </select>
+
+        <select name="position2" style="margin-top: 220px; width: 45%; padding:0px; margin-left: 4%;float: left;background-color: #fff;color: #0090d6;font-size: 15px;height: 30px;line-height: 30px;text-align: center;border: solid 1px #0090d6;">
+            <option value="01格子">01格子</option>
+            <option value="02格子">02格子</option>
+            <option value="03格子">03格子</option>
+            <option value="04格子">04格子</option>
+            <option value="05格子">05格子</option>
+            <option value="06格子">06格子</option>
+            <option value="07格子">07格子</option>
+            <option value="08格子">08格子</option>
+            <option value="09格子">09格子</option>
+        </select>
+
+
+        <input name="bookid" value="{$book['bookid']}" style="display: none;">
+        <button type="submit" style="margin-top: 50px; width: 96%; margin-left: 2%; background-color: #0090d6; color: #fff;height: 50px;line-height: 50px;text-align: center;border-radius: 5px;border:solid 1px #fff;">提交</button>
+    </form>
+
+
+</div>
+    
+</body>
+</html>

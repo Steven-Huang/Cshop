@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>燕之居</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <link rel="stylesheet" href="./Public/css/userStyle.css">
+    <link rel="stylesheet" href="./Public/fonts/iconfont.css">
+    <link rel="stylesheet" href="./Public/css/app.css">
+    <link href="./Public/css/common.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./Public/js/jquery-1.9.1.js" ></script>
+    <script type="text/javascript" src="./Public/js/date.js" ></script>
+    <script type="text/javascript" src="./Public/js/iscroll.js" ></script>
+
+</head>
+
+<body style="cursor: default;">
+    
+<!-- App Start -->
+<div id="app">
+    <div class="snap-content" style="padding-bottom: 50px; height: auto;">
+        <div class="cart-wrap" style="padding-bottom: 60px; background: #f5f5f5 ">
+            <div class="scrollable-content">
+                <div class="list-group">
+                    <div style="min-height: 568px;">
+                        <div class="cart-settlement-wrap">
+                            <div class="cart-settlement-inner">
+                                <!-- 头部信息 -->
+                                <h1 class="user-shopping-cart">
+                                    已选择商品
+                                </h1>
+
+                                <!-- 已选择的商品 -->
+                                <ul class="shopping-box">
+                                    <li>
+                                        <div class="shopping-item-box">
+                                            <div class="img-box loading-box fl" style="min-height:50px;width: 80px;">
+                                                <img src="{$good['imgUrl']}" style="width: 80px;height: 50px;min-height: 50px;">
+                                            </div>
+                                            <div class="shopping-operate">
+                                                <p class="shopping-title">{$good['name']}</p>
+                                                <p class="price">所需积分：{$good['price']}分
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <form name="from" id="form" action = "{:U('App/Jifen/doOrder')}" method = "POST">
+                        <span style="margin-left: 8px; color: red;font-size: 12px;">积分兑换礼品在燕之居领取</span>
+                            <!-- 联系电话 -->
+                            <div class="goods-time" id="ziti_tel_wrap">
+                                <div class="element-inner" id="ziti_tel_wrap_inner">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    联系
+                                                    <br>电话
+                                                </td>
+                                                <td>
+                                                    <label >
+                                                        <input class="selectTime" name="userPhone" type="text" value="{$userInfo['phone']}" placeholder="*很重要"></label>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- 备注信息 -->
+                            <div class="remark-box">
+                                <div class="element-inner" id="remark-box-inner">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    备注
+                                                    <br>信息</td>
+                                                <td>
+                                                    <input type="text" name="remark" class="want-to-say" placeholder="*可不填">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- 商品信息 -->
+                            <input type="text" name="goodId" value="{$good['goodId']}" style="display: none;">
+                            <input type="text" name="openid" value="{$user['openid']}" style="display: none;">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 封装订单信息表单 -->
+        <div class="navbar navbar-app cart-footer" style="position: fixed; bottom: 0; left: 0; width: 100%; height: auto; background:#fff; border-top:1px solid #6fbfd9;">
+            <a  type="submit" onclick="submitForm()" class="order_submitBtn">
+                确认兑换 <em class="icon iconfont">&#xe615;</em>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- App End -->
+
+<script type="text/javascript">
+    // form表单提交
+    function submitForm()
+    {
+        document.getElementById("form").submit();    
+    }
+</script>
+ 
+</body>
+</html>

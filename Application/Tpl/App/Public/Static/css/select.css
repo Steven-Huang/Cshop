@@ -1,0 +1,230 @@
+div.info {
+	width: 100%;
+	height: 100px;
+	top:0px; 
+	left:0px; 
+	position: fixed;
+	background-color: #0090d6;
+	text-align: center;
+}
+
+div.theatre {
+	position: absolute;
+	margin-top: 5px;
+	width: 100%;
+	text-align: center;
+}
+
+.zhongzhouxian {
+	background-color: #fff;
+	width: 100%;
+	height: 30px;
+	margin-top: -2px;
+	position: absolute;
+	text-align: center;
+	font-size: 15px;
+	color: #444242;
+	line-height: 30px;
+}
+
+.shuxian {
+	z-index: -999;
+	border-right: 1px #444242 dotted ;
+	width: 1px;
+	height: 300px;
+	margin-left: 50%;
+	margin-top: 5px;
+	position: absolute;
+}
+
+.zhezhao {
+	z-index: 999;
+	border-right: 1px #444242 dotted ;
+	width: 20px;
+	height: 300px;
+	margin-left: 5px;
+	margin-top: 15px;
+	position: absolute;
+	border-radius: 15px;
+	opacity:0.6;
+	filter:alpha(opacity=60);
+	background-color: #444242;
+}
+
+.selected-seats {
+	max-height: 60px;
+	overflow-y: auto;
+	overflow-x: none;
+	width:110%;
+	margin:auto;
+	margin-left: -35px;
+	margin-top: -10px;
+}
+
+.selected-seats li{
+	float:left; 
+	width:55px; 
+	height:26px; 
+	line-height:26px; 
+	border:1px solid #fff; 
+	background:#fff; 
+	margin:5px; 
+	font-size:10px; 
+	font-weight:bold; 
+	text-align:center;
+	color:#0090d6;
+	margin-left: 8px;
+	border-radius: 2px;
+}
+
+.tuli {
+	text-align: center;
+	width: 80%;
+	height: auto;
+	margin-top: 20px;
+}
+
+.name{
+	margin-top: 10px;
+	font-size: 15px;
+	color: #fff;
+}
+
+div.footer {
+	width: 100%;
+	height: 20%;
+	bottom:0px; 
+	left:0px; 
+	position: fixed;
+	background-color: #0090d6;
+	text-align: center;
+}
+
+.ui_btn {
+	position: absolute;
+	top: 45px;
+	bottom: 35px;
+	right: 10px;
+	left: 10px;
+	background-color: #960101;
+	border-radius: 5px;
+	height: 35px;
+	line-height: 35px;
+	color: #fff;
+	font-size: 20px;
+}
+
+div.seatCharts-container {
+	position: absolute;
+	margin-left: -5px;
+	text-align: center;
+	width: 100%;
+	min-width:540px;
+	margin-top: 100px;
+	min-height: 400px;
+	z-index: -999;
+
+}
+
+div.seatCharts-cell {
+	/*座位样式*/
+	height: 22px;
+	width: 22px;
+	margin: 4px;
+	float: left;
+	text-align: center;
+	outline: none;
+	/*编号*/
+	font-size: 15px;
+	line-height:22px;
+	color: #000;
+
+}
+
+/*div.seatCharts-space {
+	background-image: url("../images/4.png");
+	width: 22px;
+	height: 22px;
+	background-size: 100% 100%;
+	margin: 4px;
+	float: left;
+	text-align: center;
+	outline: none;
+	/*编号*/
+	/*font-size: 20px;
+	line-height:22px;
+	color: blue;*/
+/*}*/
+
+div.seatCharts-seat {
+	background-color: #fff;
+	color: white;
+	/*座位上的数字*/
+	font-size: 0px;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	cursor: default;
+}
+
+div.seatCharts-seat:focus {
+	border: none;
+}
+/*
+.seatCharts-seat:focus {
+	outline: none;
+}
+*/
+
+div.seatCharts-space {
+	background-color: white;
+}
+
+div.seatCharts-row {
+	height: 30px;
+}
+
+div.seatCharts-row:after {
+	clear: both;
+}
+
+/*座位不同状态的样式*/
+div.seatCharts-seat.available {
+	background-image: url("../images/2.png");
+	width: 22px;
+	height: 22px;
+	background-size: 100% 100%;
+	/*background-position:0px 136px;*/
+}
+
+div.seatCharts-seat.focused {
+	background-image: url("../images/2.png");
+	width: 22px;
+	height: 22px;
+	background-size: 100% 100%;
+}
+
+div.seatCharts-seat.selected {
+	background-image: url("../images/3.png");
+	width: 22px;
+	height: 22px;
+	background-size: 100% 100%;
+	/*background-position:0px 92px;*/
+}
+
+div.seatCharts-seat.unavailable {
+	background-image: url("../images/1.png");
+	width: 22px;
+	height: 22px;
+	background-size: 100% 100%;
+	/*background-position:0px 114px;*/
+}
+
+ul.seatCharts-legendList {
+	list-style: none;
+}
+
+li.seatCharts-legendItem {
+	margin-top: 10px;
+	line-height: 2;
+}

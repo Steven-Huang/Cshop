@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>正在跳转支付···</title>
+</head>
+<body onload="submitOrder()">
+	<form name="payForm" id="form" method="post" action="https://pay.csebank.com:567/payGateway/NMerEBPReqServlet.do">	
+		<input type="hidden" id="transData" name="transData" value="{$xml}">
+	</form>
+<script type="text/javascript">
+	function submitOrder()
+	{
+		document.getElementById("form").submit();    
+	}
+</script>
+
+</body>
+</html>

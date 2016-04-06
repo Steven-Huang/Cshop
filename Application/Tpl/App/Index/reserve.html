@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>燕之居</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <link rel="stylesheet" href="./Public/css/userStyle.css">
+    <link rel="stylesheet" href="./Public/fonts/iconfont.css">
+
+<style type="text/css">
+    .selectGoodNum{
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width:80%; 
+        margin-left: 10%; 
+        background-color: #0090D6;
+        border-radius: 50%; 
+        text-align: center; 
+        color: #fff;
+    }
+</style>
+ 
+</head>
+<body style="cursor: default;" onload="load()">
+<!-- App Start -->
+<div id="app">
+    <div id="app_content" class="snap-content">
+
+        <!-- 头部导航栏 -->
+        <div id="app-header" class="app-header box-sizing fixed-wrap" style="position: fixed;">
+            <div class="app-header-inner">
+                <div id="app-header-main" class="app-header-main">
+                    <div class="header-menu" style="background-color: #fff;">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                                <tr>
+                                    <td class="active-btn">
+                                        <a href="{:U('App/Index/home')}">
+                                            <img src="./Public/icon/rebackHome.png" class="current" style="width:30px; margin-left: 20px;">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <ul id="header-menue-ui">
+                                            <li style="width: 100%; font-size: 22px;">
+                                                <a id="menu-fruits" href="#" >
+                                                <span>燕之居</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td class="active-btn">
+                                        <a href="{:U('App/User/index')}">
+                                            <img src="./Public/icon/account.png" style="width:30px; margin-right: 20px;">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="transform-wrap" style="width:100%; margin-top: 3px; padding-top: 58px;">
+            <div>
+                <ul class="product-box">
+
+                <volist name="goods" id="good">
+                    <if condition="$good.buyFlag eq '1'">
+                        <li>
+                            <!-- <div class="product-item-box"> -->
+                            <div class="product-item-inner" style="border-bottom: solid 1px #66b9e1;">
+                                <div class="product-item-header">
+                                    <div class="lazy-wrap font-zero">
+                                        <img class="lazy" src="{$good['imgUrl']}" width="100%" heigh="auto" style="height: 137px;">
+                                        <!-- <a href="#" title="尽享礼盒"></a> -->
+                                    </div>
+                                </div>
+                                <div class="product-item-main">
+                                    <div class="product-item-content">
+                                        <h3>
+                                            <a href="#">{$good['name']}</a>
+                                            <span class="price">
+                                                <i>¥</i>
+                                                {$good['price']}<!-- {$good['unit']} -->
+                                            </span>
+                                            <span class="price">
+                                                供货当天三点后停止购买
+                                            </span>
+
+                                            <if condition="$good['description'] neq ''">
+                                                <span class="unit" style="padding: 3px; border:solid 1px #0090d6; border-radius: 3px; color: #000;">{$good['description']}
+                                                </span> 
+                                                <else />
+                                            </if>                                  
+                                        </h3>
+                                        <p id="product-itme-price-box-5212" class="product-itme-price-box" style="margin-top: 5px;">
+                                            
+                                            <!-- 库存和星期显示 -->
+                                            <if condition="$good['number'] neq '0'">
+                                                <span style="padding: 3px; border:solid 1px #A3000F; border-radius: 3px; color: #A3000F;font-size: 10px;">库存:{$good['number']}份
+                                                </span>
+                                            <else />
+                                                <span style="padding: 3px; border:solid 1px #A3000F; border-radius: 3px; color: #A3000F;font-size: 10px;">无库存
+                                                </span>
+                                            </if> 
+                                            &nbsp;&nbsp;
+                                            <if condition="$good['number'] neq '0'">
+                                            <if condition="$good['saleTimeFlag'] neq '0'">
+                                                <span style="padding: 3px; border:solid 1px #7F7F7F; border-radius: 3px; color: #7F7F7F;font-size: 10px;">供货日期:{$good['saleTimeFlag']}</span>
+                                            <else />
+                                            </if>
+
+                                            <else />
+                                            <span style="padding: 3px; border:solid 1px #7F7F7F; border-radius: 3px; color: #7F7F7F;font-size: 10px;">    暂不供货，请等待安排
+                                            </span>
+                                            </if>
+                                        </p>
+                                    </div>
+
+                                    <!-- 购买按钮 -->
+                                    <div class="product-opera-wrap" style="margin-bottom: -2px;">
+                                        <div class="product-opera-inner" >
+                                            <div id="addAndMinusBtn{$good['goodId']}" style="display:none;" >
+                                                <span class="btn" onclick="buyMinus({$good['goodId']},{$good['price']})">
+                                                    <i class="icon iconfont">&#xe6c6;</i>
+                                                </span>
+                                                 <p id="selectGoodNum{$good['goodId']}" style="display:none; width: 25px; background-color:red;" class="selectGoodNum">0</p>
+                                                <span class="btn" onclick="buyAdd({$good['goodId']},{$good['price']})">
+                                                    <i class="icon iconfont">&#xe6bf;</i>
+                                                </span>
+                                            </div>
+                                            <if condition="$good['buyFlag'] eq '0'">
+                                                <span style="background-color: #b5b1b1;" class="btn">等</span>
+                                            <else />
+                                                <span id="buyBtn{$good['goodId']}" class="btn" onclick="buyAdd({$good['goodId']},{$good['price']})">抢</span>
+                                            </if>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                    </if>
+                </volist>
+
+                <volist name="goods" id="good">
+                    <if condition="$good.buyFlag eq '0'">
+                        <li>
+                            <!-- <div class="product-item-box"> -->
+                            <div class="product-item-inner" style="border-bottom: solid 1px #66b9e1;">
+                                <div class="product-item-header">
+                                    <div class="lazy-wrap font-zero">
+                                        <img class="lazy" src="{$good['imgUrl']}" width="100%" heigh="auto" style="height: 137px;">
+                                        <!-- <a href="#" title="尽享礼盒"></a> -->
+                                    </div>
+                                </div>
+                                <div class="product-item-main">
+                                    <div class="product-item-content">
+                                        <h3>
+                                            <a href="#">{$good['name']}</a>
+                                            <span class="price">
+                                                <i>¥</i>
+                                                {$good['price']}<!-- {$good['unit']} -->
+                                            </span>
+                                            <if condition="$good['number'] neq '0'">
+                                                <span class="price">
+                                                    供货日期前一天三点开枪
+                                                </span>
+                                            <else />
+                                            </if>
+
+                                            <if condition="$good['description'] neq ''">
+                                                <span class="unit" style="padding: 3px; border:solid 1px #0090d6; border-radius: 3px; color: #000;">{$good['description']}
+                                                </span> 
+                                                <else />
+                                            </if>                                  
+                                        </h3>
+                                        <p id="product-itme-price-box-5212" class="product-itme-price-box" style="margin-top: 5px;">
+                                            
+                                            <!-- 库存和星期显示 -->
+                                            <if condition="$good['number'] neq '0'">
+                                                <span style="padding: 3px; border:solid 1px #A3000F; border-radius: 3px; color: #A3000F;font-size: 10px;">库存:{$good['number']}份
+                                                </span>
+                                            <else />
+                                                <span style="padding: 3px; border:solid 1px #A3000F; border-radius: 3px; color: #A3000F;font-size: 10px;">无库存
+                                                </span>
+                                            </if> 
+                                            &nbsp;&nbsp;
+                                            <if condition="$good['number'] neq '0'">
+                                            <if condition="$good['saleTimeFlag'] neq '0'">
+                                                <span style="padding: 3px; border:solid 1px #7F7F7F; border-radius: 3px; color: #7F7F7F;font-size: 10px;">供货日期:{$good['saleTimeFlag']}</span>
+                                            <else />
+                                            </if>
+
+                                            <else />
+                                            <span style="padding: 3px; border:solid 1px #7F7F7F; border-radius: 3px; color: #7F7F7F;font-size: 10px;">    暂不供货，请等待安排
+                                            </span>
+                                            </if>
+                                        </p>
+                                    </div>
+
+                                    <!-- 购买按钮 -->
+                                    <div class="product-opera-wrap" style="margin-bottom: -2px;">
+                                        <div class="product-opera-inner" >
+                                            <div id="addAndMinusBtn{$good['goodId']}" style="display:none;" >
+                                                <span class="btn" onclick="buyMinus({$good['goodId']},{$good['price']})">
+                                                    <i class="icon iconfont">&#xe6c6;</i>
+                                                </span>
+                                                 <p id="selectGoodNum{$good['goodId']}" style="display:none; width: 25px; background-color:red;" class="selectGoodNum">0</p>
+                                                <span class="btn" onclick="buyAdd({$good['goodId']},{$good['price']})">
+                                                    <i class="icon iconfont">&#xe6bf;</i>
+                                                </span>
+                                            </div>
+                                            <if condition="$good['buyFlag'] eq '0'">
+                                                <span style="background-color: #b5b1b1;" class="btn">等</span>
+                                            <else />
+                                                <span id="buyBtn{$good['goodId']}" class="btn" onclick="buyAdd({$good['goodId']},{$good['price']})">抢</span>
+                                            </if>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </li>
+                    </if>
+                </volist>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 底部购物车 -->
+        <form name="from" id="form" action = "{:U('App/Cart/reserve')}" method = "POST">
+            <div id="app-footer" style="margin-top: 5px;">
+                <div class="app-footer-inner">
+                    <div id="app-footer-main" class="app-header-main">
+                        <div id="footer" class="footer fixed-wrap">
+                            <table border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                    <td class="td-left"></td>
+                                    <td class="td-center">
+                                        <div id="shopping-cart-box" class="shopping-cart-box style-color" style="width: 145px; display: block;">
+                                            <span id="cart_num" class="ft-color">0</span>
+                                            <a id="cart-btn" type="submit" onclick="submitForm()">
+                                                <span>
+                                                    <i>¥</i>
+                                                    <em id="cart_price" style="font-size: 15px;">0.00</em>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="td-right"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 提交的数据 -->
+            <input type="text" id="cartInfo" name="cartInfo" value="" style="display:none;">
+        </form>
+
+    </div>
+</div>
+<!-- App End -->
+<script>
+
+var cart_num = 0;
+var price_all = 0;
+var flag = 0;
+
+// 增加数量
+function buyAdd(id,price){
+    var buyBtn = "buyBtn"+id;
+    var selectGoodNum = "selectGoodNum"+id;
+    var addAndMinusBtn = "addAndMinusBtn"+id;
+    var goodNum = document.getElementById(selectGoodNum).innerHTML;
+
+    // 显示商品已选数量
+    document.getElementById(selectGoodNum).innerHTML = ++goodNum;
+    document.getElementById(selectGoodNum).style.display = "";//显示出来
+    // 显示加减按钮
+    document.getElementById(addAndMinusBtn).style.display = "";
+    document.getElementById(buyBtn).style.display = "none";
+
+    // 购物车处理
+    price_all += price;
+    document.getElementById("cart_price").innerHTML = price_all.toFixed(2);
+    document.getElementById("cart_num").innerHTML = ++cart_num;
+    // 更新本地临时存储数据
+    saveNumber(id, goodNum, cart_num, price_all);
+}
+
+// 减少数量
+function buyMinus(id,price){
+    var selectGoodNum = "selectGoodNum"+id;
+    var addAndMinusBtn = "addAndMinusBtn"+id;
+    var buyBtn = "buyBtn"+id;
+    var goodNum = document.getElementById(selectGoodNum).innerHTML;
+
+    document.getElementById(selectGoodNum).innerHTML = --goodNum;
+    // 如果小于零
+    if(goodNum == '0'){
+        document.getElementById(selectGoodNum).style.display = "none";//隐藏商品选择的数字
+        document.getElementById(addAndMinusBtn).style.display = "none";
+        document.getElementById(buyBtn).style.display = "";
+    }
+
+    // 购物车处理
+    document.getElementById("cart_num").innerHTML = --cart_num;
+    price_all -= price;
+    document.getElementById("cart_price").innerHTML = price_all.toFixed(2);
+    // 更新本地临时存储数据
+    saveNumber(id, goodNum, cart_num, price_all);
+}
+
+// 保存选择商品的数量
+function saveNumber(id, goodNum, cart_num, price_all)
+{
+    var data = loadData();
+    for (var i = data.length - 1; i > 0; i--) {
+        if(data[i].goodId == id){
+            data[i].goodNum = goodNum;
+            // saveData(data);
+            flag = 1;
+        }
+    }
+
+    if(flag == 0){
+        var cartObject = {'goodId': id, 'goodNum': goodNum};
+        data.push(cartObject);
+        // saveData(data);   
+    }
+    flag = 0;
+
+    data[0].all_num = cart_num;
+    data[0].all_price = price_all;
+    saveData(data);
+}
+
+function loadData(){
+    // 存储临时数据
+    var storage = window.localStorage;
+    var collection=storage.getItem("tempCartDatareserve");
+    if(collection!=null){
+        return JSON.parse(collection);
+    }else{
+        data = [];
+        var cartObject = {'all_num': 0, 'all_price': 0};
+        data.push(cartObject);
+        saveData(data);  
+        var collection2=storage.getItem("tempCartDatareserve");
+        return  JSON.parse(collection2);
+    }
+}
+// 利用 localStorage 保存购物车中的数据
+function saveData(data){
+    // 存储临时数据
+    var storage = window.localStorage;
+    storage.setItem("tempCartDatareserve",JSON.stringify(data));
+    document.getElementById("cartInfo").value = JSON.stringify(data);
+}
+// form表单提交
+function submitForm()
+{
+    localStorage.clear();
+    document.getElementById("form").submit();    
+}
+
+function load(){ 
+    var data = loadData();
+    for (var i = data.length - 1; i > 0; i--) {
+        var selectGoodNum = "selectGoodNum"+data[i].goodId;
+        var addAndMinusBtn = "addAndMinusBtn"+data[i].goodId;
+        var buyBtn = "buyBtn"+data[i].goodId;
+
+        // 刷新页面如果商品被选择则修改数量
+        if(data[i].goodNum != '0'){
+            document.getElementById(selectGoodNum).innerHTML = data[i].goodNum;
+            document.getElementById(selectGoodNum).style.display = "";//隐藏商品选择的数字
+            document.getElementById(addAndMinusBtn).style.display = "";
+            document.getElementById(buyBtn).style.display = "none";
+        }
+    }
+
+    // 修改购物车数据
+    document.getElementById("cart_num").innerHTML = data[0].all_num;
+    document.getElementById("cart_price").innerHTML = data[0].all_price.toFixed(2);
+    cart_num = data[0].all_num;//初始化购物车数量
+    price_all = data[0].all_price;//初始化购物车价格
+    saveData(data);
+
+}
+
+</script>
+</body>
+</html>

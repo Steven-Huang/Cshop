@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="keywords" content="大转盘" />
+<meta name="description" content="幸运大转盘" />
+<title>幸运大转盘</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
+<script src="http://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="/xunyanjinfu/Public/js/jQueryRotate.2.2.js"></script>
+<!-- <script src="http://cdn.amazeui.org/amazeui/2.5.2/js/amazeui.min.js"></script> -->
+<!-- <script type="text/javascript" src="/xunyanjinfu/Public/js/jquery.easing.min.js"></script> -->
+<!-- <link rel="stylesheet" type="text/css" href="http://nsh2.565tech.com/xunyanjinfu/Public/css/style.css"> -->
+<!-- <link rel="stylesheet" href="http://nsh2.565tech.com/xunyanjinfu/Public/css/app.css"> -->
+<link rel="stylesheet" href="http://nsh2.565tech.com/xunyanjinfu/Public/css/amazeui.min.css">
+
+<style type="text/css">
+.time-item strong{background:#C71C60;color:#fff;line-height:25px;font-size:20px;font-family:Arial;padding:2 1px;margin-right:-2px;border-radius:2px;box-shadow:1px 1px 3px rgba(0,0,0,0.2);}
+.demo{width:250px; height:250px; position:relative; margin:40% auto}
+#disk{width:250px; height:250px; background:url(/gitWebTest/yanzhiju/Public/img/disk.png) no-repeat;background-size: 250px 250px;}
+#start{width:166px; height:120px; position:absolute; top:-3px; left:58px;}
+#start img{cursor:pointer;width: 80%;}
+</style>
+
+<script type="text/javascript">
+// var intDiff = parseInt('{$time}');//倒计时总秒数量
+var intDiff = '{$time}';
+// var intDiff = 10000;
+function timer(intDiff){
+    window.setInterval(function(){
+	    var day=0, hour=0, minute=0, second=0;//时间默认值    
+	    if(intDiff > 0){
+			day = Math.floor(intDiff / (60 * 60 * 24));
+			hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+			minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+			second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+	    }
+	    if (minute <= 9) minute = '0' + minute;
+	    if (second <= 9) second = '0' + second;
+	    $('#day_show').html(day+"天");
+	    $('#hour_show').html('<s id="h"></s>'+hour+'时');
+	    $('#minute_show').html('<s></s>'+minute+'分');
+	    $('#second_show').html('<s></s>'+second+'秒');
+	    intDiff--;
+	    if(intDiff == 0){
+	        $('#day_show').hide();
+	        $('#hour_show').hide();
+	        $('#minute_show').hide();
+	        $('#second_show').hide();
+	        $('#time_msg').hide();
+	    }
+    }, 1000);
+} 
+
+// 注释掉时间倒计时
+$(function(){
+    if (intDiff <= 0) {
+    //开抢执行的动作
+    }else{
+        timer(intDiff);
+    }
+}); 
+
+// 抽奖
+function lottery(){ 
+    $.ajax({ 
+        type: 'POST', 
+        url: '{:U(\'Slyder/run\')}',  //提交地址
+        dataType: 'json',
+        data : {
+            orderId : '{$order.orderId}',
+            openid : '{$order.openid}'
+        }, 
+        cache: false, 
+        error: function(){ 
+            alert('网络出错了！'); 
+            return false; 
+        }, 
+        success:function(json){ 
+			$("#startbtn").unbind('click').css("cursor","default"); 
+			var a = json.angle; //角度 
+			var p = json.prize; //奖项 
+			if(p == '0'){
+				alert('您的机会已用完！');
+				location.href='http://wxe.csrcbank.com/yanzhiju/index.php?g=App&m=Slyder&a=showQRcode&openid={$order.openid}';
+			}else if(p == '谢谢参与'){
+				$("#startbtn").rotate({ 
+					duration:3000, //转动时间 
+					angle: 0, 
+					animateTo:1800+a, //转动角度 
+					easing: $.easing.easeOutSine, 
+					callback: function(){ 
+						alert('很遗憾，下次再抽吧！');
+						location.href = './index.php?g=App&m=Slyder&a=showQRcode&openid={$order.openid}';
+					} 
+				}); 
+			}else{
+				$("#startbtn").rotate({ 
+					duration:3000, //转动时间 
+					angle: 0, 
+					animateTo:1800+a, //转动角度 
+					easing: $.easing.easeOutSine, 
+					callback: function(){ 
+						alert('恭喜你，抽中'+p+'！');
+						location.href = './index.php?g=App&m=Slyder&a=showQRcode&openid={$order.openid}';
+					} 
+				}); 
+			}
+        } 
+    }); 
+} 
+</script>
+</head>
+<body>
+	<div style="width: 100%;padding: 0px;">
+	    <img style="position: absolute; padding: 0px;width: 100%; top: 25px; left: 0px;" src="/gitWebTest/yanzhiju/Public/img/SlyderBackground.png">
+	</div>
+	<!-- 倒计时模块 -->
+	<div class="time-item" style="text-align: center;background-color: #e7e51f;">
+	  <strong>距离活动结束:</strong>
+	  <strong id="day_show">0天</strong>
+	  <strong id="hour_show">0时</strong>
+	  <strong id="minute_show">0分</strong>
+	  <strong id="second_show">0秒</strong>
+	</div>
+	<!--倒计时模块-->
+	<div id="main">
+	   <div class="msg"></div>
+	   <div class="demo">
+	        <div id="disk"></div>
+	        <div id="start">
+	        	<img src="/gitWebTest/yanzhiju/Public/img/start.png" onclick="lottery()" id="startbtn">
+	        </div>
+	   </div>
+	</div>
+</body>
+</html>

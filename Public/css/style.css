@@ -1,0 +1,215 @@
+.header {
+	width: 94%;
+	margin-left: 3%;
+	height: 60px;
+	background-color: #0090d6;
+	margin-top: 5px;
+	position: absolute;
+}
+
+.header img {
+	width: 60px;
+	height: 60px;
+	right: 25px;
+	top: 0px;
+	position: absolute;
+}
+
+.title {
+	margin-left: 15px;
+	margin-top: 4px;
+	color: #fff;
+	font-size: 22px;
+	font-family:choggle;
+}
+
+.content {
+	position: absolute;
+	width: 94%;
+	margin-left: 3%;
+	margin-top: 80px;
+}
+
+.content img {
+	width: 100%;
+}
+
+.join {
+	width: 94%;
+	margin-left: 3%;
+	height: 60px;
+	bottom: 15px;
+	background-color: #5d51cf;
+	position: fixed;
+	display: block;
+}
+
+.join .intro {
+	font-size: 25px;
+	line-height: 20px;
+	margin-top: 8px;
+	margin-left: 10px;
+	color: #fff;
+}
+
+.join .message {
+	font-size: 15px;
+	line-height: 5px;
+	margin-left: 10px;
+	color: #9f9acb;
+}
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot'); /* IE9*/
+  src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:40px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+  position: fixed;
+  bottom: 15px;
+  right: 20px;
+  color: #fff;
+}
+
+.icon-right:before { content: "\e61e"; }
+
+/*商品页面*/
+
+.good {
+	width: 100%;
+	height: 200px;
+	background-color: #000;
+	margin-top: 10px;
+	position: static;
+}
+
+.good img {
+	width: 100%;
+	height: 200px;
+	position: relative;
+
+	opacity:0.8;
+	filter:alpha(opacity=80);
+	/*z-index: -999;*/
+}
+
+.good .name {
+	margin-top: -10px;
+	position: absolute;
+	font-size: 20px;
+	color: #fff;
+	margin-left: 15px;
+}
+
+.good .introduce {
+	margin-top: -150px;
+	position: absolute;
+	font-size: 15px;
+	color: #fff;
+	margin-left: 15px;
+}
+
+.good .sprice {
+	margin-top: -100px;
+	position: absolute;
+	font-size: 14px;
+	color: #0090d6;
+	margin-left: 15px;
+	background-color: #fff;
+	border-radius: 5px;
+	border: 1px solid #0090d6;
+}
+
+.price {
+	margin-top: 40px;
+	position: absolute;
+	font-size: 14px;
+	color: #0090d6;
+	margin-left: 15px;
+	background-color: red;
+	border-radius: 5px;
+	border: 1px solid #0090d6;
+}
+
+.good .buy {
+	width: 100px;
+	height: 32px;
+	line-height: 30px;
+	text-align: center;
+	margin-top: -50px;
+	margin-left: 15px;
+	border-radius: 10px;
+	font-size: 20px;
+	color: #fff;
+	background-color: #0090d6;
+	border: 1px solid #fff;
+	right: 20px;
+	position: absolute;
+}
+
+.blue {
+	margin-top: -60px;
+	position: absolute;
+	font-size: 14px;
+	color: #fff;
+	margin-left: 15px;
+	background-color: #0090d6;
+	border-radius: 5px;
+	border: 1px solid #fff;
+}
+
+.blue2 {
+	margin-top: -100px;
+	position: absolute;
+	font-size: 14px;
+	color: #fff;
+	margin-left: 15px;
+	background-color: #0090d6;
+	border-radius: 5px;
+	border: 1px solid #fff;
+}
+
+.btn {
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 10px;
+}
+
+.headimg {
+  	width: 90%;
+  	margin-left: 5%;
+  	margin-top: 20px;
+  	min-height: 400px; 
+}
+
+.boxes {
+	width: 100%;
+}
+
+.boxes .box {
+	height: 60px;
+	color: #eee;
+	line-height: 100px;
+	text-align: center;
+	transition: all .2s ease;
+}
+
+.boxes .box:hover {
+  transform: rotate(360deg);
+}
+
+.img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+

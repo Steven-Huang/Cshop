@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>查找图书</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+
+<style type="text/css">
+	.isbn{
+
+	}
+
+	.submit{
+		
+	}
+
+</style>
+
+</head>
+<body>
+
+	<form name="payForm" id="form" method="post" action="{:U('App/Read/searchingBook')}" >	
+		<div class="isbn">
+			<input type="text" name="isbn" >
+			<input type="text" style="display: none" name="openid" value="{$openid}">
+		</div>
+		<div class="submit" onclick="submitOrder()">
+			<span>提交</span>
+		</div>
+	</form>
+
+<script type="text/javascript">
+	function submitOrder()
+	{
+		document.getElementById("form").submit();    
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0">
+    <title>图书详情</title>
+  <link rel="stylesheet" href="./Public/css/app.css">
+  <link rel="stylesheet" href="./Public/css/userStyle.css">
+    
+</head>
+<body>
+    <h3 style="margin-left: 10px; height30px; margin-top: 15px;margin-bottom: 30px;border-bottom: solid 3px #f2f2f2;">点击想要看的图书</h3>
+<ul class="product-box" >
+    <volist name="books" id="book">
+        <li>
+            <a href="{:U('App/Read/registerNewBook', array('isbn'=>$book['isbn'],'openid'=>$openid))}">
+                <div style="display: block">
+                    <!-- 商品信息 -->
+                    <div style="margin-top: 2px;border-bottom: solid 1px #A5C2E4;">
+                        <img style="margin-top: -20px;width:112px;height:160px;" src="{$book['image']}">
+                        <div class="goodInfo" style="margin-top: -170px;">
+                          <span >豆瓣评分：</span>
+                          <img src="./Public/images/start/{$book['star']}.png">
+                          <p>作者：{$book['author']}</p>
+                          <p>出版社：{$book['publisher']}</p>
+                          <p>出版时间：{$book['pubdate']}</p>
+                          <p style="max-height: 20px;">名称：{$book['title']}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        <li>
+    </volist>
+</ul>    
+</body>
+</html>

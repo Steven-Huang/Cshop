@@ -1,0 +1,35 @@
+<?php
+/*
+ | --------------------------------------------------------------------------
+ | Author: Fusky  |  E-Mail: choggle2011@gmail.com  |  2016-04-06 09:09:11
+ | --------------------------------------------------------------------------
+ | Copyright (c) 20014-2016 http://iperson.cn   All rights reserved.
+ | --------------------------------------------------------------------------
+ | 
+ | TP框架入口
+ | 
+ */
+
+if (ini_get('magic_quotes_gpc')) {
+	function stripslashesRecursive(array $array){
+		foreach ($array as $k => $v) {
+			if (is_string($v)){
+				$array[$k] = stripslashes($v);
+			} else if (is_array($v)){
+				$array[$k] = stripslashesRecursive($v);
+			}
+		}
+		return $array;
+	}
+	$_GET = stripslashesRecursive($_GET);
+	$_POST = stripslashesRecursive($_POST);
+}
+
+//ThinkPHP初始化
+define ( 'APP_NAME', 'Application' );
+define( 'APP_SITE', getcwd());
+define ( 'APP_PATH', APP_SITE.'/Application/' );
+define ( 'APP_DEBUG', true );
+require './Core/index.php';
+
+?>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>创建缴费表单</title>
+<link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">
+<link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
+<style type="text/css">
+	.btn{
+		height: 100px;
+		margin-top: 50px;
+		font-size: 30px;
+		margin-bottom: 50px;
+		margin-left: 30px;
+	}
+</style>
+
+</head>
+<body>
+	<div class="demo-content offset3"> 
+		<div>
+			<button class="button btn span6 button-info">礼品管理</button>
+			<button class="button btn span6 button-success">添加礼品</button>
+		</div>
+	</div>
+
+    <div class="demo-content offset3">
+
+        <div class="row">
+            <div class="span4">&nbsp;</div>
+            <div class="span16 doc-content">
+                <form class="form-horizontal well" enctype="multipart/form-data" action="{:U('App/Other/addGood')}" method = "POST">
+                    <h1 style="margin-left: 40px;margin-bottom: 20px;">添加积分商品</h1>
+                    <div class="row">
+                        <div class="control-group span8">
+                            <label class="control-label">所需积分:</label>
+                            <div class="controls">
+                                <input type="text" name="price" class="control-text"></div>
+                        </div>
+                        <div class="control-group span8">
+                            <label class="control-label">是否上架:</label>
+                            <div class="controls">
+                                <input type="text" name="showFlag" class="control-text"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="control-group span8">
+                            <label class="control-label">商品库存:</label>
+                            <div class="controls">
+                                <input type="text" name="number" class="control-text"></div>
+                        </div>
+                        <div class="control-group span8">
+                            <label class="control-label">商品名称:</label>
+                            <div class="controls">
+                                <input type="text" name="name" class="control-text"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="control-group span8">
+                            <label class="control-label">商品描述:</label>
+                            <div class="controls">
+                                <input type="text" name="description" class="control-text"></div>
+                        </div>
+                        <div class="control-group span8">
+                            <label class="control-label">商品图片:</label>
+                            <div class="controls">
+                                <input type="file" multiple="multiple" name="img" class="input-normal"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-actions offset3">
+                            <button type="submit" class="span3 button button-primary">保存</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- script end --> </div>
+</body>
+</html>

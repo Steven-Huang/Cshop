@@ -1,0 +1,65 @@
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+<meta name="format-detection" content="telephone=no,email=no,adress=no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="常熟票务">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="renderer" content="webkit">
+<link rel="stylesheet" type="text/css" href="../Public/Static/css/reset.min.css">
+<!-- 导航栏样式 -->
+<link rel="stylesheet" type="text/css" href="../Public/Static/css/menu.css" media="all">
+<script type="text/javascript" src="../Public/Static/js/jquery.min.js"></script>
+<!-- 短信验证码 -->
+ 
+<title>常熟农商行票务</title>
+
+</head>
+<body class="shop">
+
+<div class="head">
+       <!--  <div class="head-l">
+            <ul>
+                <li id="app_back" style="">
+                    <a href="{:U('App/Index/index')}" class="back-btn">返回</a>
+                </li>
+            </ul>
+        </div> -->
+        <h1 class="head-m">商家合作</h1>
+    </div>
+
+    <div class="login-con2">
+        <form action="{:U('App/User/shopadd')}" method="POST" >
+        <div class="login-con-user">
+            <div class="usr-box">
+                <input name="phone" type="text" class="msg-ipt" id='phone' placeholder="请输入手机号码">
+            </div>
+            <div class="usr-box">
+                <input name="username" type="text" class="msg-ipt" placeholder="请输入姓名">
+            </div>
+            <!-- 短信验证码 -->
+           <!-- <div class="usr-box">
+                <input name="phonecode" type="text" placeholder="短信验证码" class="msg-ipt mr10">
+                <input class="login-btn" id="btnSendCode" type="button" value="点击获取验证码" onclick="sendMessage()" />
+            </div> -->
+            <div class="usr-box">
+               <!--  <input name="message" type="textarea" style="width:200px;heigth:200px" placeholder="经营信息" class="con-ipt pl0" style="margin-bottom:0;heigth:300px"> -->
+               <select name="message" style="width:200px;heigth:200px" placeholder="经营信息" class="con-ipt pl0" style="margin-bottom:0;heigth:300px">  
+                <option value ="电影票务">电影票务</option>  
+                <option value ="纪念票务">纪念票务</option>  
+                <option value ="剧院票务">剧院票务</option>  
+                <option value ="其他票务">其他票务</option>  
+            </select>
+            </div>
+            <button class="login-btn2" type="submit" id="regbtn">确认提交</button>
+        </div>
+        </form>
+    </div>
+   </body>
+
+   </html>
